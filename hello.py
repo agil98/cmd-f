@@ -17,6 +17,7 @@ def hello():
 def infoback():
 	app.logger.info(request.form['text'])
 	img_url = request.form['text']
+	
 	# if 'file' in request.files:
 	# 	f = request.files['file']
 	# 	filename = secure_filename(f.filename)
@@ -25,6 +26,10 @@ def infoback():
 	# return render_template('hello.html', filename='%s/%s' % (STATIC_DIR, filename))
 	# return jsonify(image1="http://www.caribfocus.com/wp-content/uploads/2015/09/apples2.jpg",description="This is an apple")
 	return str(img_url)
+
+@app.route('/food',methods=['POST'])
+def infopresent():
+	return render_template('seeyou.html')
 
 if __name__ == '__main__':
    app.run(debug = True)	
