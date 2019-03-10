@@ -1,7 +1,6 @@
 $(function() {
     $('#upload-file-btn').click(function() {
         var form_data = new FormData($('#upload-file')[0]);
-        form_data.append('image', $('input[type=file]')[0].files[0]);
         $.ajax({
             type: 'POST',
             url: '/food',
@@ -11,6 +10,8 @@ $(function() {
             processData: false,
             success: function(data) {
                 console.log('Success!');
+                console.log(data);
+                $('#picture').attr('src', data);
             },
         });
     $('#welcome').hide();
