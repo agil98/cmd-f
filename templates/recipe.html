@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+<head>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'recipe.css')}}">
+</head>
+<body>
+<div class="card transition">
+  <h2 class="transition"></h2>
+  {% for r in recipes %}
+    <p>{{ r['recipe']['ingredientLines'] }}</p>
+  {% endfor %}
+  <div class="cta-container transition"><a href="#" class="cta">Call to action</a></div>
+  <div class="card_circle transition"></div>
+</div>
+</body>
+</html>

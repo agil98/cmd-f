@@ -16,9 +16,8 @@ ingredients = {}
 @app.route('/')
 def recipeSearch():
 	url = 'https://api.edamam.com/search?q=chicken' + '&app_id=' + app_id + '&app_key=' + app_key + '&from=0&to=4'
-	# url = 'https://api.edamam.com/search?q=' + food_name + '&app_id=' + app_id + '&app_key=' + app_key
-	r = requests.get(url)
-	results = r.json()
+	res = requests.get(url)
+	results = res.json()
 
 	return render_template("recipe.html", recipes=results['hits'])
 
