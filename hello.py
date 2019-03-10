@@ -1,21 +1,26 @@
 import json
 import requests
-from flask import Flask, request
-
+import logging
+import os
+from flask import Flask, request, render_template, send_from_directory, jsonify
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
-app_id = '9c6002af'
-app_key = '29d5731c89d6adc4fbba5a8e4bbfb1d9'
 
 @app.route('/')
 def hello():
-	url = 'https://api.edamam.com/search?q=' + food_name + '&app_id=' + app_id + '&app_key=' + app_key
-	#'https://api.edamam.com/search?q=chicken&app_id=9c6002af&app_key=29d5731c89d6adc4fbba5a8e4bbfb1d9&from=0&to=3&calories=591-722&health=alcohol-free'
-	#url = 'https://api.edamam.com/search?q=' + food_name + '&app_id=' + app_id + '&app_key=' + app_key
-	r = requests.get(url)
-	return json.dumps(r.json())
+   return render_template('hello.html')
 
-
+@app.route('/food',methods=['POST'])
+def infoback():
+	if 'file' in request.files:
+		filepath = os.path.join(app.instance_path)
+		f = request.files['file']
+		filename = secure_filename(f.filename)
+		f.save(filepath, filename)
+		app.logger.info('%s saved' % filename)
+	return render_template('hello.html', filename='%s/%s' % (filepath, filename))
+	# return jsonify(image1="http://www.caribfocus.com/wp-content/uploads/2015/09/apples2.jpg",description="This is an apple")
 
 if __name__ == '__main__':
-	app.run()
+   app.run(debug = True)	
