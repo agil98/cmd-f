@@ -1,16 +1,18 @@
 import json
 import requests
-from flask import Flask
+from flask import Flask, request
 
 
 app = Flask(__name__)
-API_KEY = 'b36d687785msh07f8dded993900fp124f55jsn1302007a713a'
+app_id = '9c6002af'
+app_key = '29d5731c89d6adc4fbba5a8e4bbfb1d9'
 
 @app.route('/')
 def hello():
-	url = 'https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer?q=How+much+vitamin+c+is+in+2+apples%3F'
-	headers = {'X-RapidAPI-Key': API_KEY}
-	r = requests.get(url, headers=headers)
+	url = 'https://api.edamam.com/search?q=' + food_name + '&app_id=' + app_id + '&app_key=' + app_key
+	#'https://api.edamam.com/search?q=chicken&app_id=9c6002af&app_key=29d5731c89d6adc4fbba5a8e4bbfb1d9&from=0&to=3&calories=591-722&health=alcohol-free'
+	#url = 'https://api.edamam.com/search?q=' + food_name + '&app_id=' + app_id + '&app_key=' + app_key
+	r = requests.get(url)
 	return json.dumps(r.json())
 
 
