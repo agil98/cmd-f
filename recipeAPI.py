@@ -1,6 +1,6 @@
 import json
 import requests
-from flask import Flask
+from flask import Flask, request, render_template
 from flask_paginate import Pagination, get_page_parameter
 
 
@@ -22,7 +22,7 @@ def recipeSearch():
     results = json.loads(r.text) # this gives a dictionary object
     recipe_dict = results['hits']
 
-    return recipe_dict
+    return render_template("recipe.html", recipes=recipe_dict)
 
 
 if __name__ == '__main__':

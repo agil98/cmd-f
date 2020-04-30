@@ -16,7 +16,7 @@ def hello():
 
 
 @app.route('/food', methods=['POST'])
-def infoback():
+def infoBack():
 	app.logger.info(request.form['img_url'])
 	img_url = request.form['img_url']
 
@@ -35,4 +35,4 @@ def infoback():
 
 
 if __name__ == '__main__':
-   app.run(debug = True)	
+	app.run(debug=True)
