@@ -1,0 +1,30 @@
+body {
+	margin: 0;
+	font-family: 'Lato', Helvetica, Arial, sans-serif;
+	font-size: 18px;
+	color: #333;	
+	text-align: center;
+}
+
+form{
+	width : 50%;
+	text-align: center;
+}
+
+fieldset {
+	border : 0;
+	box-shadow: none;
+	text-align: center;
+}
+
+h1 {
+	font-size: 5rem;
+	font-weight: normal;
+	margin: 20;
+}
+
+h2 {
+	font-size: 3rem;
+	font-weight: normal;
+	margin: 20;
+}
