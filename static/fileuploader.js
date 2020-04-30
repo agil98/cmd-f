@@ -1,6 +1,6 @@
 $(function() {
     $('#upload-file-btn').click(function() {
-        var form_data = new FormData($('#upload-file')[0]);
+        var form_data = new FormData($('#upload-file-form')[0]);
         $.ajax({
             type: 'POST',
             url: '/food',
@@ -11,11 +11,11 @@ $(function() {
             success: function(data) {
                 console.log('Success!');
                 console.log(data);
-                $('#picture').attr('src', data);
+                $('#upload_img').attr('src', data);
             },
         });
-    $('#welcome').hide();
-    $('#tag').hide();
-    $('#upload-file').hide();
+    $('#welcome-header').hide();
+    $('#upload-file-header').hide();
+    $('#upload-file-form').hide();
     });
 });
