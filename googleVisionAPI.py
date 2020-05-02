@@ -9,13 +9,13 @@ from google.oauth2 import service_account
 
 def search_labels(image_address):
     # Instantiates a client
+    credentials = service_account.Credentials.from_service_account_file(
+        "/Users/bluish/Documents/credentials/google-api.json")
     client = vision.ImageAnnotatorClient(credentials=credentials)
 
     # The name of the image file to annotate
-    file_name = os.path.join(
-        os.path.dirname(__file__),
-        image_address)
-        # 'resources/oreo-cake.jpg')
+    file_name = image_address
+        # os.path.join(os.path.dirname(__file__), 'resources/oreo-cake.jpg')
 
     # Loads the image into memory
     with io.open(file_name, 'rb') as image_file:
@@ -27,7 +27,8 @@ def search_labels(image_address):
     response = client.label_detection(image=image)
     labels = response.label_annotations
 
-    print('Labels:')
-    # usually the fourth label gives the general name of the food
+    unwanted_labels = ['Food', 'Cuisine', 'Ingredient', 'Dish', 'Dessert']
     for label in labels:
         print(label.description)
+        if label.description not in unwanted_labels:
+            return label.description

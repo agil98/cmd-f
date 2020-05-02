@@ -17,7 +17,7 @@ def hello():
 	return render_template('hello.html')
 
 
-@app.route('/upload', methods=['POST'])
+@app.route('/search-label', methods=['POST'])
 def info_back():
 	# # given local image
 	img = request.files['img-upload']
@@ -25,21 +25,20 @@ def info_back():
 		img_name = secure_filename(img.filename)
 		path_addr = os.path.join(app.config['STATIC_DIR'], img_name)
 		img.save(path_addr)
-		app.logger.info('%s saved' % img_name)
-		get_label('local', path_addr)
-		return path_addr
+		app.logger.info('%s image path address saved' % path_addr)
+		img_info = {"uri": path_addr, "label": get_label(path_addr)}
+		return json.dumps(img_info)
 	else:
 		# # given link address
-		app.logger.info(request.form['img_url'])
+		app.logger.info('%s image link address saved' % request.form['img_url'])
 		img_url = request.form['img_url']
-		get_label('link', img_url)
-		return str(img_url)
+		return img_url, get_label(img_url)
 
 
-def get_label(img_type, img_path):
-	if img_type == 'local':
-		img_path = encode_image(img_path)
-	# googleVisionAPI.search_labels(image_address=img_path)
+def get_label(img_path):
+	label = googleVisionAPI.search_labels(image_address=img_path)
+	# print(label)
+	return label
 
 
 # https://cloud.google.com/vision/docs/base64#mac-osx

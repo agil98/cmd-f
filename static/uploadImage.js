@@ -23,22 +23,21 @@ $(function () {
 });
 
 
-/* get image */
+// TODO: send info to googleAPI
 $(function() {
     $('#upload-file-btn').click(function() {
         let form_data = new FormData($('#upload-file-form')[0]);
-        console.log(form_data);
         $.ajax({
             type: 'POST',
-            url: '/upload',
+            url: '/search-label',
             data: form_data,
             contentType: false,
             cache: false,
             processData: false,
             success: function(data) {
-                console.log('Success!');
-                console.log(data);
-                $('#upload-img').attr('src', data);
+                let img_data = JSON.parse(data);
+                $('#upload-img').attr('src', img_data["uri"]);
+                $('#upload-img').attr('alt', img_data["label"]);
             },
         });
     $('#welcome-header').hide();
@@ -46,7 +45,3 @@ $(function() {
     $('#upload-file-form').hide();
     });;
 });
-
-
-
-// TODO: send info to googleAPI
