@@ -178,3 +178,18 @@ footer {
 .contact-form input:hover, .contact-form textarea:hover {
 	background-color: white;
 }
+
+.image-preview {
+	max-height: 30vw;
+	max-width: 30vw;
+	height: 30vw;
+	width: 30vw;
+	border: 2vw;
+	solid: #dddddd;
+	margin-top: 5vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #cccccc;
+	background-color: #ffffff;
+}

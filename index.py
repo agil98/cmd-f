@@ -3,6 +3,7 @@ import requests
 import logging
 import os
 import base64
+import googleVisionAPI
 from flask import Flask, request, render_template, send_from_directory, jsonify
 from werkzeug.utils import secure_filename
 
@@ -16,7 +17,7 @@ def hello():
 	return render_template('hello.html')
 
 
-@app.route('/food', methods=['POST'])
+@app.route('/upload', methods=['POST'])
 def info_back():
 	# # given local image
 	img = request.files['img-upload']
@@ -25,16 +26,20 @@ def info_back():
 		path_addr = os.path.join(app.config['STATIC_DIR'], img_name)
 		img.save(path_addr)
 		app.logger.info('%s saved' % img_name)
-		# return render_template('hello.html', filename='%s/%s' % (STATIC_DIR, img_name))
+		get_label('local', path_addr)
 		return path_addr
 	else:
 		# # given link address
 		app.logger.info(request.form['img_url'])
 		img_url = request.form['img_url']
+		get_label('link', img_url)
 		return str(img_url)
 
 
-
+def get_label(img_type, img_path):
+	if img_type == 'local':
+		img_path = encode_image(img_path)
+	# googleVisionAPI.search_labels(image_address=img_path)
 
 
 # https://cloud.google.com/vision/docs/base64#mac-osx
