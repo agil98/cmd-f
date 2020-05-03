@@ -54,7 +54,9 @@ function callRecipeApi(label) {
     console.log('the label is ' + label);
     setInterval(function() {
         $.ajax({
-            url: '/choose-recipe/'+label,
+            success: function() {
+                window.location.href = '/choose-recipe/'+label;
+            }
         })
-    }, 5000); //5 seconds
+    }, 2000); //5 seconds
 }
