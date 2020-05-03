@@ -1,5 +1,4 @@
 import io
-import os
 
 # Imports the Google Cloud client library
 from google.cloud import vision
@@ -15,7 +14,6 @@ def search_labels(image_address):
 
     # The name of the image file to annotate
     file_name = image_address
-        # os.path.join(os.path.dirname(__file__), 'resources/oreo-cake.jpg')
 
     # Loads the image into memory
     with io.open(file_name, 'rb') as image_file:
@@ -27,7 +25,7 @@ def search_labels(image_address):
     response = client.label_detection(image=image)
     labels = response.label_annotations
 
-    unwanted_labels = ['Food', 'Cuisine', 'Ingredient', 'Dish', 'Dessert']
+    unwanted_labels = ['Food', 'Cuisine', 'Ingredient', 'Dish', 'Dessert', 'Pizza']
     for label in labels:
         print(label.description)
         if label.description not in unwanted_labels:

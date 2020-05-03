@@ -23,7 +23,7 @@ $(function () {
 });
 
 
-// TODO: send info to googleAPI
+/* send info to googleAPI */
 $(function() {
     $('#upload-file-btn').click(function() {
         let form_data = new FormData($('#upload-file-form')[0]);
@@ -38,6 +38,8 @@ $(function() {
                 let img_data = JSON.parse(data);
                 $('#upload-img').attr('src', img_data["uri"]);
                 $('#upload-img').attr('alt', img_data["label"]);
+
+                callRecipeApi(img_data["label"]);
             },
         });
     $('#welcome-header').hide();
@@ -45,3 +47,14 @@ $(function() {
     $('#upload-file-form').hide();
     });;
 });
+
+
+function callRecipeApi(label) {
+    console.log('in callREcipeAPI');
+    console.log('the label is ' + label);
+    setInterval(function() {
+        $.ajax({
+            url: '/choose-recipe/'+label,
+        })
+    }, 5000); //5 seconds
+}
