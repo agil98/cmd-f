@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Pavanam&display=swap');
+
+
+body {
+	/* position: relative; */
+	background-image: url('../bg_main.png');
+	height: 100%;
+	overflow: hidden;
+}
+
+.website-title {
+	position: relative;
+	top: 20vw;
+	left: 30vw;
+	content: url('../logo.png');
+	width: 40%;
+}
+
+.upload-file-form {
+	position: relative;
+	left: 50%;
+	transform: translateX(-50%);
+	top: 34vw;
+	width: 60vw;
+}
+
+fieldset{
+	border: none;
+}
+
+.link-upload {
+}
+
+input[type=text] {
+	width: 100%;
+	height: 2vw;
+	padding-left: 1vw;
+	font-size: 1em;
+	border: 1px solid #62681E;
+	border-radius: 0.16em;
+	font-family: 'Pavanam', sans-serif;
+}
+
+#img_url:disabled {
+	cursor: no-drop;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 0, 0, 0.5);
+  opacity: 0.6; /* Firefox */
+}
+
+input[type=text]:hover {
+	box-shadow: 0px 0px 10px #62681E;
+}
+
+input[type=text]:focus {
+	outline: none;
+	box-shadow: 0px 0px 10px green;
+}
+
+.local-upload {
+	position: absolute;
+	top: 23%;
+	right: 3.8%;
+}
+
+#camera-icon {
+	position: absolute;
+	width: 1.5vw;
+	height: 1.5vw;
+	content: url("../camera.png");
+}
+
+#camera-icon:hover {
+	cursor: pointer;
+	content: url("../camera_hover.png");
+}
+
+#local-img-file {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+#image-preview-c {
+	position: absolute;
+	top: 72.05322807vh;
+	left:0px;
+	height: 25vh;
+	width: 100vw;
+	background-color: #F4F4F1;
+}
+
+#image-preview-img {
+	position: absolute;
+	left: 25vw;
+	top: 1.1vw;
+	width: 50vw;
+	height: 50vw;
+  clip-path: circle(47.3% at center);
+}

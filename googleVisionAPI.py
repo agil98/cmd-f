@@ -6,20 +6,25 @@ from google.cloud.vision import types
 from google.oauth2 import service_account
 
 
-def search_labels(image_address):
+def search_labels(location, image_address):
     # Instantiates a client
     credentials = service_account.Credentials.from_service_account_file(
         "/Users/bluish/Documents/credentials/google-api.json")
     client = vision.ImageAnnotatorClient(credentials=credentials)
 
-    # The name of the image file to annotate
-    file_name = image_address
+    if location == 'local':
+        # The name of the image file to annotate
+        file_name = image_address
 
-    # Loads the image into memory
-    with io.open(file_name, 'rb') as image_file:
-        content = image_file.read()
+        # Loads the image into memory
+        with io.open(file_name, 'rb') as image_file:
+            content = image_file.read()
 
-    image = types.Image(content=content)
+        image = types.Image(content=content)
+    else:
+        print('online')
+        image = vision.types.Image()
+        image.source.image_uri = image_address
 
     # Performs label detection on the image file
     response = client.label_detection(image=image)

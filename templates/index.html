@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+    <title>Find Your Recipe</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='front-end/index.css') }}">
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+    <script src="{{ url_for('static', filename='front-end/uploadImage.js') }}"></script>
+</head>
+<body>
+  <div class="website-title"></div>
+
+  <div class="image-preview">
+      <img id="image-preview-img"/>
+      <div id="image-preview-c"/>
+  </div>
+
+  <form class="upload-file-form" method="post" enctype="multipart/form-data">
+    <fieldset>
+
+      <div class="link-upload">
+        <input name='img_url' id='img_url' type='text' placeholder="Paste your link here or upload your image"/>
+      </div>
+
+      <div class="local-upload">
+        <label for="local-img-file">
+            <img id="camera-icon"/>
+        </label>
+        <input name="local-img-file" id="local-img-file" type="file"/>
+      </div>
+
+    </fieldset>
+  </form>
+
+</body>
+</html>
