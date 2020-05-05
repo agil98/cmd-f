@@ -8,8 +8,7 @@ from werkzeug.utils import secure_filename
 STATIC_DIR = 'static/uploaded_images'
 app = Flask(__name__)
 app.config['STATIC_DIR'] = STATIC_DIR
-# app.add_url_rule('/choose-recipe/?=<img_addr>', view_func=recipeAPI.recipe_search)
-app.add_url_rule('/choose-recipe/<label>', view_func=recipeAPI.recipe_search)
+app.add_url_rule('/choose-recipe/', view_func=recipeAPI.recipe_search, methods=['POST'])
 
 
 @app.route('/')

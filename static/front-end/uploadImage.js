@@ -60,22 +60,39 @@ function searchRecipe() {
             let img_data = JSON.parse(data);
             $('#image-preview-img').attr('src', img_data["uri"]);
             $('#image-preview-img').attr('alt', img_data["label"]);
+            console.log(img_data)
 
-            callRecipeApi(img_data["uri"],img_data["label"]);
-            // callRecipeApi(img_data["label"]);
+            callRecipeApi(data);
+
+            // callRecipeApi(img_data["uri"], img_data["label"]);
         },
     });
 }
 
-function callRecipeApi(uri, label) {
+function callRecipeApi(data) {
     document.body.style.cursor = "progress"; //"wait";
-    setInterval(function() {
-        $.ajax({
-            success: function() {
-                // window.location.href = '/choose-recipe/'+label+'/'+uri;
-                //                 window.location.href = '/choose-recipe/?='+uri;
-                window.location.href = '/choose-recipe/'+label;
-            }
-        })
-    }, 1500);
+    $.ajax({
+        type: 'POST',
+        url: '/choose-recipe',
+        data: data,
+        contentType: 'application/json',
+        dataType:'json',
+        cache: false,
+        processData: false,
+        success: function (response) {
+            console.log("?????");
+            // window.location.href = data.redirect;
+            document.write(response);
+        },
+    });
+
+    //  setInterval(function() {
+    //     $.ajax({
+    //         success: function() {
+    //             // window.location.href = '/choose-recipe/'+label+'/'+uri;
+    //             //                 window.location.href = '/choose-recipe/?='+uri;
+    //             window.location.href = '/choose-recipe/'+data;
+    //         }
+    //     })
+    // }, 1500);
 }
