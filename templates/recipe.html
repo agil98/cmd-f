@@ -1,16 +1,79 @@
 <!doctype html>
-<html>
+<html lang="en">
+
 <head>
-<link rel="stylesheet" href="{{ url_for('static', filename = 'recipe.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='front-end/recipe.css') }}">
+  <!-- <link rel="stylesheet" href="../static/front-end/recipe.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
+
+
 <body>
-<div class="card transition">
-  <h2 class="transition"></h2>
-  {% for r in recipes %}
-    <p>{{ r['recipe']['ingredientLines'] }}</p>
-  {% endfor %}
-  <div class="cta-container transition"><a href="#" class="cta">Call to action</a></div>
-  <div class="card_circle transition"></div>
-</div>
+   <!-- spanning the entire width of the viewport. -->
+  <div class="container-fluid">
+    <div class="row" id="top">
+      <div class="col-lg-1" id="logo">
+        <a href="index.html" id="logo-icon"></a>
+      </div>
+      <div class="col-lg" id="toolbar-container">
+          <div class="keyword-toolbar">
+            <div id="given-img">
+{#              <img src="{{= img_addr }}"/>#}
+{#              <img src="{% img_addr %}"/>#}
+            </div>
+
+            <form>
+              <input type="text" id="keyword-input" placeholder="optional: enter keywords"/>
+            </form>
+          </div>
+          <!-- <div id="search icon">
+
+          </div> -->
+      </div>
+    </div>
+
+    <div class="row" id="recipe-container">
+      <div class="row" id= "one-recipe-row">
+
+        <div class="col-lg recipe-card">
+          <div id="recipe-img">
+            <img src="../resources/lasagna.jpg"/>
+          </div>
+          <div id="ingredients">
+            <h4>Title</h4>
+            <h5>Ingredients</h5>
+            <!-- r['recipe']['label'] -->
+            <!-- r['recipe']['image'] -->
+            <!-- r['recipe']['url'] -->
+            <!-- 'yield'/'dietLabels'/'healthLabels'/'ingredients' -->
+            {% for r in recipes %}
+            <p>{{ r['recipe']['ingredientLines'] }}</p>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="col-lg recipe-card">
+        </div>
+        <div class="col-lg recipe-card">
+        </div>
+
+      </div>
+    </div>
+
+    <div class="row" id="load-more-container">
+      <button type="button" class="btn btn-warning">Load More</button>
+    </div>
+
+    <div class="row" id="app-info">
+      2020-May
+    </div>
+
+  </div>
 </body>
+
 </html>

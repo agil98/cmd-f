@@ -61,16 +61,19 @@ function searchRecipe() {
             $('#image-preview-img').attr('src', img_data["uri"]);
             $('#image-preview-img').attr('alt', img_data["label"]);
 
-            callRecipeApi(img_data["label"]);
+            callRecipeApi(img_data["uri"],img_data["label"]);
+            // callRecipeApi(img_data["label"]);
         },
     });
 }
 
-function callRecipeApi(label) {
+function callRecipeApi(uri, label) {
     document.body.style.cursor = "progress"; //"wait";
     setInterval(function() {
         $.ajax({
             success: function() {
+                // window.location.href = '/choose-recipe/'+label+'/'+uri;
+                //                 window.location.href = '/choose-recipe/?='+uri;
                 window.location.href = '/choose-recipe/'+label;
             }
         })

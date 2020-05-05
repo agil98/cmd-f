@@ -101,5 +101,5 @@ input[type=text]:focus {
 	top: 1.1vw;
 	width: 50vw;
 	height: 50vw;
-  clip-path: circle(47.3% at center);
+	clip-path: circle(47.3% at center);
 }

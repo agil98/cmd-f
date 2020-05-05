@@ -1,115 +1,165 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,200');
-body {   font-family: Helvetica, san-serif;
-  background: -webkit-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* Chrome 10+, Saf5.1+ */
-  background:    -moz-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* FF3.6+ */
-  background:     -ms-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* IE10 */
-  background:      -o-linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* Opera 11.10+ */
-  background:         linear-gradient(90deg, #00aaee 10%, #DD2476 90%); /* W3C */ }
-.transition { transition: .3s cubic-bezier(.3, 0, 0, 1.3) }
-.card {
-    background-color: #fff;
-    bottom: 0;
-    box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
-  -webkit-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
-  -moz-box-shadow: 0px 0px 10px 2px rgba(0,0,0,0.3);
-    height: 300px;
-    left: 0;
-    margin: auto;
-    overflow: hidden;
-    position: absolute;
-    right: 0;
-    top: 0;
-    width: 300px;
+@import url('https://fonts.googleapis.com/css2?family=Pavanam&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;1,700&display=swap');
+
+
+.container-fluid {
+  display: inline-flex;
+  flex-direction: column;
+  min-width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
 }
-.card:hover {
-    height: 450px;
-    width: 300px;
+
+#top {
+  background-color: #F4F4F1;
+  display: flex;
+  min-width: 100vw;
+  height: 14%;
+  align-self: center;
+  align-items: center;
 }
-.card:hover .cta-container {
-    display: inline;
-    margin-top: 380px;
+
+#logo {
+  height: 80%;
 }
-.card:hover .card_circle {
-    background-size: cover;
-    border-radius: 0;
-    margin-top: -130px;
+
+#logo-icon {
+  content: url('../logo_icon.png');
+  display: block;
+  height: 100%;
+  padding-left: 1vw;
 }
-.card:hover h2 {
-    background: #3487f7;
-    color: #fff;
-    margin-top: 100px;
-    padding: 5px;
+
+#toolbar-container {
+  position: relative;
+  display: block;
+  width: 100%;
+  margin: 0% 5% 0% 2.5%;
 }
-.card:hover h2 small { color: #fff }
-.card:hover p { margin-top: 300px }
-.card_circle {
-    background: url('http://lorempixel.com/400/200') no-repeat center bottom;
-    background-color: #3487f7;
-    background-size: cover;
-    border-radius: 50%;
-    height: 400px;
-    margin-left: -75px;
-    margin-top: -270px;
-    position: absolute;
-    width: 450px;
+
+#keyword-input {
+  font-family: 'Pavanam', sans-serif;
+  font-size: 1.2em;
+  border: 1px solid #62681E;
+  border-radius: 10px;
+  padding: 1% 2% 1% 6.5%;
+  width: 100%;
 }
-h2 {
-    color: #3487f7;
-    font-family: 'Raleway', sans-serif;
-    font-size: 24px;
-    font-weight: 200;
-    margin-top: 150px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    z-index: 9999;
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: rgba(0, 0, 0, 0.8);
+  opacity: 0.6; /* Firefox */
 }
-p {
-    color: rgba(0,0,0,.6);
-    font-family: 'Raleway', sans-serif;
-    font-size: 100%;
-    font-weight: normal;
-    margin-top: 200px;
-    position: absolute;
-    text-align: center;
-    z-index: 9999;
+
+input[type=text]:hover {
+	box-shadow: 0px 0px 10px #62681E;
 }
-.cta-container {
-    display: none;
-    margin-top: 320px;
-    position: absolute;
-    text-align: center;
-    width: 100%;
-    z-index: 9999;
+
+input[type=text]:focus {
+	outline: none;
+	box-shadow: 0px 0px 10px green;
 }
-.cta {
-    -moz-border-radius: 2px;
-    -moz-transition: 0.2s ease-out;
-    -ms-transition: 0.2s ease-out;
-    -o-transition: 0.2s ease-out;
-    -webkit-border-radius: 2px;
-    -webkit-transition: 0.2s ease-out;
-    background-clip: padding-box;
-    border: 2px solid #3487f7;
-    border-radius: 2px;
-    color: #3487f7;
-    display: inline-block;
-    font-family: 'Raleway', sans-serif;
-    font-size: 17px;
-    font-weight: 400;
-    height: 36px;
-    letter-spacing: 0.5px;
-    line-height: 36px;
-    margin-bottom: 15px;
-    padding: 0 2rem;
-    text-decoration: none;
-    text-transform: uppercase;
-    transition: 0.2s ease-out;
+
+#given-img {
+  position: absolute;
+  margin: 0.2% 0.6%;
+  top: 0%;
+  left: 2%;
+  z-index: -1px;
+  width: 4%;
+  height: 90%;
 }
-.cta:hover {
-    background-color: #3487f7;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    color: #fff;
-    -moz-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    -webkit-box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+#given-img img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#given-img:hover {
+  cursor: pointer;
+}
+
+#recipe-container {
+  display: flex;
+  margin: 3.0% 0.5% 2.5% 1%;
+  padding-top: 0.9%;
+  width: 100%;
+  height: 65%;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  overflow: auto;
+}
+
+#one-recipe-row {
+  width: 100%;
+  height: 100%;
+  /* margin-top: 1%; */
+}
+
+.recipe-card {
+  display: block;
+  position: relative;
+  background-color: rgba(207, 198, 172, 0.24);
+  margin: 0% 3%;
+  height: 98%;
+  max-width: 27% !important;
+  /* padding-left: 0%; */
+
+  border-radius: 15px 50px;
+  box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.recipe-card:hover{
+  cursor: pointer;
+  box-shadow: -2px -4px 7px 4px #CFC6AC;
+}
+
+#recipe-img {
+  position: absolute;
+  left: 0;
+  background-color: #779476;
+  border-radius: 15px 50px 0px 0px;
+  width: 100%;
+  height: 45%;
+}
+
+#recipe-img img {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px 50px 0px 0px;
+  box-shadow: inset 0px -10px 20px rgba(0, 0, 0, 0.5);
+}
+
+h4 {
+  font-family: 'Playfair Display SC', serif;
+  font-style: italic;
+}
+
+#ingredients {
+  position: relative;
+  height: 53%;
+  left:0;
+  top:45%;
+  padding: 3%;
+  padding-top: 5%;
+  overflow: auto;
+  scroll-behavior: smooth;
+  border-radius: 0px 0px 15px 50px;
+
+  font-family: 'Pavanam', sans-serif;
+  font-size: 1.3em;
+}
+
+#load-more-container, #app-info{
+  position: relative;
+  align-self: center;
+}
+
+#app-info{
+  position: absolute;
+  bottom:0px;
+  margin-bottom: 0.5%;
+  align-items: baseline;
 }

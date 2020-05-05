@@ -30,7 +30,7 @@ def search_labels(location, image_address):
     response = client.label_detection(image=image)
     labels = response.label_annotations
 
-    unwanted_labels = ['Food', 'Cuisine', 'Ingredient', 'Dish', 'Dessert', 'Pizza']
+    unwanted_labels = ['Food', 'Cuisine', 'Ingredient', 'Dish', 'Dessert', 'Pizza', 'Meat', 'Meal', 'Recipe', 'Produce']
     for label in labels:
         print(label.description)
         if label.description not in unwanted_labels:
