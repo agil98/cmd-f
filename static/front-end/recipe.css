@@ -65,7 +65,7 @@ input[type=text]:focus {
   margin: 0.2% 0.6%;
   top: 0%;
   left: 2%;
-  z-index: -1px;
+  z-index: -1;
   width: 4%;
   height: 90%;
 }
@@ -104,7 +104,7 @@ input[type=text]:focus {
   margin: 0% 3%;
   height: 98%;
   max-width: 27% !important;
-  /* padding-left: 0%; */
+    min-width: 27% !important;
 
   border-radius: 15px 50px;
   box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.25);
@@ -141,9 +141,8 @@ h4 {
   position: relative;
   height: 53%;
   left:0;
-  top:45%;
-  padding: 3%;
-  padding-top: 5%;
+  top:43%;
+  padding: 5% 3%;
   overflow: auto;
   scroll-behavior: smooth;
   border-radius: 0px 0px 15px 50px;

@@ -63,16 +63,18 @@ function searchRecipe() {
 
 function callRecipeApi(data) {
     document.body.style.cursor = "progress"; //"wait";
-    $.ajax({
-        type: 'POST',
-        url: '/choose-recipe',
-        data: data,
-        contentType: 'application/json',
-        dataType:'json',
-        cache: false,
-        processData: false,
-        success: function (response) {
-            document.write(response);
-        },
-    });
+    setTimeout(function(){
+        $.ajax({
+            type: 'POST',
+            url: '/choose-recipe',
+            data: data,
+            contentType: 'application/json',
+            dataType:'json',
+            cache: false,
+            processData: false,
+            success: function (response) {
+                document.write(response);
+            },
+        });
+    }, 1250);
 }
