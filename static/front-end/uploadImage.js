@@ -56,15 +56,7 @@ function searchRecipe() {
         cache: false,
         processData: false,
         success: function (data) {
-            console.log(data);
-            let img_data = JSON.parse(data);
-            $('#image-preview-img').attr('src', img_data["uri"]);
-            $('#image-preview-img').attr('alt', img_data["label"]);
-            console.log(img_data)
-
             callRecipeApi(data);
-
-            // callRecipeApi(img_data["uri"], img_data["label"]);
         },
     });
 }
@@ -80,19 +72,7 @@ function callRecipeApi(data) {
         cache: false,
         processData: false,
         success: function (response) {
-            console.log("?????");
-            // window.location.href = data.redirect;
             document.write(response);
         },
     });
-
-    //  setInterval(function() {
-    //     $.ajax({
-    //         success: function() {
-    //             // window.location.href = '/choose-recipe/'+label+'/'+uri;
-    //             //                 window.location.href = '/choose-recipe/?='+uri;
-    //             window.location.href = '/choose-recipe/'+data;
-    //         }
-    //     })
-    // }, 1500);
 }
