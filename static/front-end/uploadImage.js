@@ -26,15 +26,6 @@ $(function () {
 });
 
 
-/* if link is entered */
-//     document.addEventListener('keydown', function (e) {
-//         console.log("??");
-//         if (e.keyCode == 13) {
-//             e.preventDefault();
-//             alert("success");
-//             return searchRecipe();
-//         }
-//     })
 document.onkeydown = function(event){
     event = event || window.event;
     let e = event.keyCode;
@@ -56,13 +47,22 @@ function searchRecipe() {
         cache: false,
         processData: false,
         success: function (data) {
-            callRecipeApi(data);
+            if (JSON.parse(data)["label"] === "not food") {
+                alert("This is not Food :(, please re-upload!");
+                $('#img_url')[0].disabled = false;
+                $('#img_url')[0].value = "";
+                setTimeout(function(){
+                    // window.location.reload();
+                },1250);
+            } else {
+                callRecipeApi(data);
+            }
         },
     });
 }
 
 function callRecipeApi(data) {
-    document.body.style.cursor = "progress"; //"wait";
+    document.body.style.cursor = "wait"; //"progress";
     setTimeout(function(){
         $.ajax({
             type: 'POST',
@@ -76,5 +76,5 @@ function callRecipeApi(data) {
                 document.write(response);
             },
         });
-    }, 1250);
+    }, 2);
 }

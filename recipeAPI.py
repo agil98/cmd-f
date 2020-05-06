@@ -13,7 +13,7 @@ def recipe_search():
     img_addr = data["uri"]
 
     label.replace(" ", "+")
-    url = 'https://api.edamam.com/search?q=' + label + '&app_id=' + app_id + '&app_key=' + app_key + '&from=0&to=4'
+    url = 'https://api.edamam.com/search?q=' + label + '&app_id=' + app_id + '&app_key=' + app_key
     response = requests.get(url)
     results = json.loads(response.text)
     recipes = results["hits"]

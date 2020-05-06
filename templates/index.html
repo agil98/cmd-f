@@ -3,9 +3,11 @@
 <head>
     <title>Find Your Recipe</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='front-end/index.css') }}">
+{#    <link rel="stylesheet" href="../static/front-end/index.css">#}
     <link rel="icon" href="data:,">
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-    <script src="{{ url_for('static', filename='front-end/uploadImage.js') }}"></script>
+{#  <script src="../static/front-end/uploadImage.js"></script>#}
+    <script type="text/javascript" src="{{ url_for('static', filename='front-end/uploadImage.js') }}"></script>
 </head>
 <body>
   <div class="website-title"></div>
@@ -32,5 +34,8 @@
     </fieldset>
   </form>
 
+<div class="credits">
+    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> and <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>; Background image from
+  <a href="https://www.flickr.com/photos/frenkieb/371156802">"Ingredients"</a><span> by <a href="https://www.flickr.com/people/frenkieb/">Francis Bijl</a></span> is licensed under <a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=html">CC BY 2.0</a><a href="https://creativecommons.org/licenses/by/2.0/?ref=ccsearch&atype=html" target="_blank" rel="noopener noreferrer"></a></div>
 </body>
 </html>

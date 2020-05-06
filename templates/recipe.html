@@ -3,17 +3,32 @@
 
 <head>
   <title>Choose Your Recipe</title>
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='front-end/recipe.css') }}">
-{#  <link rel="stylesheet" href="../static/front-end/recipe.css">#}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='front-end/recipe.css') }}">
+  <script type="text/javascript" src="{{ url_for('static', filename='front-end/recipe.js') }}"></script>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-  <!-- <script src="{{ url_for('static', filename='front-end/recipe.js') }}"></script> -->
-  <!-- <script src="../static/front-end/recipe.js') }}"></script> -->
+{#  <script src="../static/front-end/recipe.js"></script>#}
+{#  <link rel="stylesheet" href="../static/front-end/recipe.css">#}
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script>
+    (function() {
+      "use strict";
+
+      let observer = new MutationObserver(function() {
+        if (document.body) {
+            hideUnnecessaryRecipes();
+          observer.disconnect();
+        }
+      });
+      observer.observe(document.documentElement, {childList: true});
+    })();
+  </script>
+
 </head>
 
 
@@ -22,7 +37,7 @@
   <div class="container-fluid">
     <div class="row" id="top">
       <div class="col-lg-1" id="logo">
-        <a href="index.html" id="logo-icon"></a>
+        <a href="" id="logo-icon"></a>
       </div>
       <div class="col-lg" id="toolbar-container">
         <div class="keyword-toolbar">
@@ -31,7 +46,7 @@
           </div>
 
           <form>
-            <input type="text" id="keyword-input" placeholder="optional: enter keywords" />
+            <input type="text" id="keyword-input" placeholder="optional: enter keywords" disabled />
           </form>
         </div>
         <!-- <div id="search icon">
@@ -42,23 +57,49 @@
 
     <div class="row" id="recipes-container">
 
-      <!-- {% for r in recipes %} -->
+      {% for r in recipes %}
       <div class="row" id="one-recipe-container">
         <div class="recipe-card">
+
           <div class="col-lg" id="front">
             <div id="recipe-img">
               <img src={{ r['recipe']['image'] }} alt={{ r['recipe']['url'] }} />
             </div>
             <div id="ingredients">
               <h4 id="r-title">{{ r['recipe']['label'] }}</h4>
-              <h5>For {{ r['recipe']['yield'] }} servings</h5>
-              <span>- {{ "\n - ".join(r['recipe']['ingredientLines']) }}</span>
+              <h6>For {{ r['recipe']['yield'] }} servings</h6>
+              <span id="img-data">- {{ "\n - ".join(r['recipe']['ingredientLines']) }}</span>
             </div>
+          </div>
+
+          <div class="col-lg" id="back">
+            <p id="back-content">
+              <span align="center" style="display:table; margin: auto; font-style: italic; font-size: 0.8em">
+                To see the full directions of the recipe, please visit:<br />
+                <a href=>{{ r['recipe']['url'] }}</a>
+              </span>
+              <br />
+              Diet Cautions in Ingredients: <br />
+              {% if not r['recipe']['dietLabels'] %}
+              <span id="data" style="font-style: italic;">- None.</span>
+              {% else: %}
+              <span id="data">- {{ ", ".join(r['recipe']['dietLabels']) }} </span>
+              {% endif %}
+              <br /><br />
+              Health Concerns: <br />
+              <span id="data">- {{ ", ".join(r['recipe']['healthLabels']) }} <br /></span>
+              <br />
+              Ingredients: <br />
+              {% for ingr in r['recipe']['ingredients'] %}
+              <span id="data">- {{ ingr['text'] }} = {{ ingr['weight'] }} grams<br /></span>
+              {% endfor %}
+            </p>
           </div>
         </div>
       </div>
 
-      <!-- {% endfor %} -->
+      {% endfor %}
+
     </div>
 
     <div class="row" id="load-more-container">

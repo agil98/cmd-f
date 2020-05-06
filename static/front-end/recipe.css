@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Pavanam&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display+SC:ital,wght@0,400;1,700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
 .container-fluid {
   display: inline-flex;
@@ -46,18 +46,24 @@
   width: 100%;
 }
 
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: rgba(0, 0, 0, 0.8);
-  opacity: 0.6; /* Firefox */
+  opacity: 0.6;
+  /* Firefox */
+}
+
+input[type=text]:disabled {
+  cursor: no-drop;
 }
 
 input[type=text]:hover {
-	box-shadow: 0px 0px 10px #62681E;
+  box-shadow: 0px 0px 10px #62681E;
 }
 
 input[type=text]:focus {
-	outline: none;
-	box-shadow: 0px 0px 10px green;
+  outline: none;
+  box-shadow: 0px 0px 10px green;
 }
 
 #given-img {
@@ -76,7 +82,8 @@ input[type=text]:focus {
 }
 
 #given-img:hover {
-  cursor: pointer;
+  /* cursor: pointer; */
+  cursor: not-allowed;
 }
 
 #recipes-container {
@@ -85,45 +92,70 @@ input[type=text]:focus {
   padding-top: 0.9%;
   width: 100%;
   height: 65%;
-  justify-content: space-between;
   flex-wrap: wrap;
   overflow: auto;
+  align-items: flex-start;
 }
 
 #one-recipe-container {
   max-width: 27% !important;
   min-width: 27% !important;
   height: 98%;
-
   display: block;
   position: relative;
-  background-color: rgba(207, 198, 172, 0.24);
-  margin: 0% 3%;
-
-  border-radius: 15px 50px;
-  box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.25);
-
+  margin: 0% 3% 2% 3%;
   perspective: 600px;
 }
 
 .recipe-card {
   height: 100%;
-  width: inherit;
-  border-radius: inherit;
-
+  width: 100%;
+  border-radius: 15px 50px;
+  box-shadow: inset -2px -4px 4px rgba(0, 0, 0, 0.25);
+  background-color: rgba(207, 198, 172, 0.24);
   position: relative;
+  cursor: pointer;
   transition: transform 1s;
   transform-style: preserve-3d;
+  z-index: 100;
 }
 
-#front {
-  height: 100%;
+.recipe-card.is-flipped {
+  position: inherit;
   width: inherit;
-  border-radius: inherit;
-  box-shadow: 3px 3px 17px rgba(0,0,0,0.4);
+  height: inherit;
+  transform: rotateY(180deg);
+  box-shadow: 3px 3px 17px rgba(0, 0, 0, 0.4);
 }
 
-#front:hover{
+.recipe-card.is-flipped #front {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  visibility: hidden;
+}
+
+#front, #back {
+  transition-delay: 0.3s;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  box-shadow: 3px 3px 17px rgba(0, 0, 0, 0.4);
+  border-radius: inherit;
+  word-break: break-all
+}
+
+#back {
+  transform: rotateY(180deg);
+  border-radius: 50px 15px !important;
+  padding: 6%;
+  font-family: 'Montserrat', sans-serif;
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+#front:hover, #back:hover {
   cursor: pointer;
   box-shadow: -2px -4px 7px 4px #CFC6AC;
 }
@@ -133,6 +165,7 @@ input[type=text]:focus {
   left: 0;
   background-color: #779476;
   border-radius: 15px 50px 0px 0px;
+  box-shadow: inset 0px -10px 20px rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 45%;
 }
@@ -142,7 +175,7 @@ input[type=text]:focus {
   height: 100%;
   overflow: hidden;
   border-radius: 15px 50px 0px 0px;
-  box-shadow: inset 0px -10px 20px rgba(0, 0, 0, 0.5);
+  /*box-shadow: inherit; !*inset 0px -10px 20px rgba(0, 0, 0, 0.5);*!*/
 }
 
 h4 {
@@ -151,35 +184,55 @@ h4 {
   text-align: center;
 }
 
-h5 {
+h6 {
   text-align: right;
-    margin: 0 !important;
+  margin: 0 !important;
 }
 
 #ingredients {
   position: relative;
   height: 51.5%;
-  left:0;
-  top:45%;
+  left: 0;
+  top: 45%;
   padding: 5% 3%;
-  overflow: auto;
-  scroll-behavior: smooth;
   border-radius: 0px 0px 15px 50px;
-
-  font-family: 'Pavanam', sans-serif;
-  font-size: 1.3em;
-
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.1em;
   white-space: pre-line;
+  overflow: hidden;
 }
 
-#load-more-container, #app-info{
+#img-data {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block;
+  display: -webkit-box;
+  max-height: 45%;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+#load-more-container, #app-info {
   position: relative;
   align-self: center;
 }
 
-#app-info{
+#app-info {
   position: absolute;
-  bottom:0px;
+  bottom: 0px;
   margin-bottom: 0.5%;
   align-items: baseline;
+}
+
+#data {
+  margin-left: 5% !important;
+}
+
+span {
+  overflow: auto;
+}
+
+#back-content {
+  height: 98%;
+  overflow: auto;
 }
